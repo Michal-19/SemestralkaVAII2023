@@ -1,0 +1,50 @@
+.container-uvod h1 {
+    font-size: 5vw;
+    color: white;
+    text-align: center;
+    margin: 30px auto;
+}
+
+@media screen and (max-width: 575px) {
+    .container-uvod h1 {
+        font-size: 6.5vw;
+    }
+}
+
+.container-uvod h3 {
+    text-align: center;
+    color: white;
+    font-size: 2vw;
+}
+
+@media screen and (max-width: 575px) {
+    .container-uvod h3 {
+        font-size: 3vw;
+    }
+}
+
+.float-container {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+}
+
+.float-child {
+    width: 46%;
+    float: left;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    border: 2px solid;
+    border-radius: 20px;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+}
+
+@media screen and (max-width: 575px) {
+    .float-child {
+        width: 90%;
+        text-align: center;
+    }
+}

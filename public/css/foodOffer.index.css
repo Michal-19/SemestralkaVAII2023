@@ -1,0 +1,48 @@
+#nadpis {
+    text-align: center;
+    color: white;
+    margin-top: 5%;
+    font-size: 80px;
+}
+
+.jedla {
+    margin-top: 5%;
+    margin-left: 33%;
+    margin-right: 33%;
+    color: white;
+}
+
+.jedlo-element {
+    margin-top: 3%;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.nadpis-druhu-jedla {
+    font-size: 30px;
+    border-bottom: 5px solid;
+    margin-top: 5%;
+}
+
+.jedla a {
+    color: white;
+    text-decoration: none;
+}
+
+.jedlo-element:hover {
+    background-color: green;
+    border: 2px solid;
+    animation-duration: 1s;
+    animation-name: animacia-zelena-farba;
+}
+
+@keyframes animacia-zelena-farba {
+    from {background-color: transparent;}
+    to {background-color: greenyellow;}
+}
+@media screen and (max-width: 575px) {
+    .jedla {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}

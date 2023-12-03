@@ -1,0 +1,88 @@
+.container-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    margin: 30px auto;
+}
+
+.container-login h1, .container-login label {
+    color: white;
+}
+
+.container-login h1 {
+    font-size: 80px;
+    text-align: center;
+}
+
+.container-login form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px auto;
+}
+
+.container-login input {
+    background: transparent;
+    border: 3px solid;
+    border-color: white;
+    border-radius: 20px;
+    width: 100%;
+    height: 45px;
+    color: white;
+}
+
+.option {
+    flex-wrap: wrap;
+    margin-top: 5%;
+}
+
+.option button {
+    font-size: 18px;
+    padding: 5px 16px;
+    width: 49%;
+    border-color: white;
+    border-radius: 20px;
+    color: white;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+#login-button {
+    background-color: dodgerblue;
+}
+
+#password-button {
+    background-color: forestgreen;
+}
+
+.container-login label {
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+@media screen and (max-width: 550px) {
+    .container-login {
+        width: 80%;
+        background-attachment: fixed;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .option button {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .container-login h1 {
+        font-size: 18vw
+    }
+}
