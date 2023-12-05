@@ -1,0 +1,15 @@
+.logout-text {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 52%;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    color: white;
+}
+
+.logout-text a {
+    color: white;
+    font-weight: bold;
+}

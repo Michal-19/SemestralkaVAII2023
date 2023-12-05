@@ -5,28 +5,23 @@
     font-size: 80px;
 }
 
-.jedla {
-    margin-top: 5%;
-    margin-left: 33%;
-    margin-right: 33%;
-    color: white;
-}
-
 .jedlo-element {
     margin-top: 3%;
+    margin-left: 30%;
+    margin-right: 30%;
     border-radius: 10px;
+    border: 2px solid;
     padding: 5px;
+    color: white;
+    text-align: center;
 }
 
 .nadpis-druhu-jedla {
     font-size: 30px;
     border-bottom: 5px solid;
     margin-top: 5%;
-}
-
-.jedla a {
+    text-align: center;
     color: white;
-    text-decoration: none;
 }
 
 .jedlo-element:hover {
@@ -45,4 +40,10 @@
         margin-left: 5%;
         margin-right: 5%;
     }
+}
+
+.add-button a {
+    margin: 3% 30% 5%;
+    width: 40%;
+    text-align: center;
 }
