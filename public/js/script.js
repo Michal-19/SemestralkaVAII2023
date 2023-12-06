@@ -15,3 +15,8 @@ function validateFoodForm() {
         return true;
     }
 }
+
+function navbarMenu () {
+    navbar = document.querySelector(".nav-bar");
+    navbar.classList.toggle("active");
+}

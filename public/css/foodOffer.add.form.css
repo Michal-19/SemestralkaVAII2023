@@ -1,9 +1,9 @@
-form {
+.add-food-offer-form {
     width: 35%;
     margin: 100px auto;
 }
 
-input {
+.input-jedlo .logout-text {
     margin-bottom: 3%;
     width: 70%;
     background-color: transparent;
@@ -12,7 +12,7 @@ input {
     color: white;
 }
 
-label {
+.label-food .label-price {
     width: 100%;
     margin-left: 15%;
     margin-top: 10%;

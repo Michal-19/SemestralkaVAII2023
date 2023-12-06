@@ -19,26 +19,48 @@ class FoodOfferController extends AControllerBase
     }
 
     public function add() {
-        return $this->html(new Food(), viewName: "add.form");
+        return $this->html(["food" => new Food(),
+                            "action" => "Pridať"], viewName: "add.form");
     }
 
     public function store() {
         $id = $this->request()->getValue("id");
+        $data = [];
         if ($id) {
             $food = Food::getOne($id);
+            if (!$food) {
+                return $this->redirect("?c=foodOffer");
+            }
+            $data["action"] = "Upraviť";
         } else {
             $food = new Food();
+            $data["action"] = "Pridať";
         }
-        $food->setName($this->request()->getValue("text"));
-        $food->setPrice($this->request()->getValue("price"));
-        $food->save();
-        return $this->redirect("?c=foodOffer");
+        $text = $this->request()->getValue("text");
+        $price = $this->request()->getValue("price");
+        $food->setName($text);
+        $food->setPrice($price);
+        if ($text && $price) {
+            $food->save();
+            return $this->redirect("?c=foodOffer");
+        } else {
+            $data["food"] = $food;
+            if (!$text) {
+                $data["errors"]["text"] = "text musí byť vyplnený";
+            }
+            if (!$price) {
+                $data["errors"]["price"] = "price musí byť vyplnená";
+            }
+            return $this->html($data, viewName: "add.form");
+        }
+
     }
 
     public function edit() {
         $id = $this->request()->getValue("id");
         $foodToEdit = Food::getOne($id);
-        return $this->html($foodToEdit, viewName: "add.form");
+        return $this->html(["food" => $foodToEdit,
+                            "action" => "Upraviť"], viewName: "add.form");
     }
 
     public function delete() {

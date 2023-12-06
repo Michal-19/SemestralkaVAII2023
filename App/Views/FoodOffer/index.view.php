@@ -9,7 +9,7 @@
 <h4 class="nadpis-druhu-jedla">Pizza</h4>
 <?php
 use App\Models\Food;
-/** @var Food[] $data */
+/** @var Food $data */
 foreach ($data as $food) { ?>
     <div class="jedlo-element"><?php echo $food->getName() ?><br>
         <div>Cena : <?php echo $food->getPrice() ?>€</div>
