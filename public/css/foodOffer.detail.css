@@ -1,0 +1,165 @@
+.food-detail-container {
+    width: 65%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: white;
+}
+
+.default-label {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    margin: 2% 0;
+}
+
+.food-detail-description,
+.food-detail-foodType,
+.food-detail-ingredients,
+.food-detail-description-edit {
+    width: 100%;
+    display: inline-grid;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.food-detail-description,
+.food-detail-foodType,
+.food-detail-ingredients {
+    margin-bottom: 5%;
+}
+
+.food-detail-description-edit::placeholder {
+    color: white;
+}
+
+.food-detail-weight, .food-detail-price {
+    width: 49%;
+    display: inline-block;
+    margin: 10% 0;
+}
+
+.food-detail-price {
+    text-align: end;
+}
+
+.food-detail-title {
+    text-align: center;
+}
+
+.food-detail-description-edit {
+    background-color: transparent;
+    border-color: white;
+    border-radius: 15px;
+    color: white;
+    display: inline-table;
+    padding: 5px;
+}
+
+#food-detail-description-edit-btn-id {
+    width: 100px;
+    left: 100%;
+    position: relative;
+    transform: translate(-100%, 0);
+}
+
+.food-detail-whole-description-edit {
+    display: flex;
+}
+
+.file-input-wrapper {
+    position: relative;
+    cursor: pointer;
+    width: 120px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 120px;
+}
+
+.custom-file-upload {
+    cursor: pointer;
+    background-color: #0d6efd;
+    color: #fff;
+    border-radius: 5px;
+    z-index: 5;
+    position: relative;
+    height: 40px;
+    display: grid;
+    align-items: center;
+    font-weight: normal !important;
+    width: 85px !important;
+    border-bottom: none !important;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+/* Optional: Style on hover */
+.custom-file-upload:hover {
+    background-color: #2980b9;
+}
+
+.food-detail-picture-img {
+    width: 80%;
+    height: auto;
+    margin-bottom: 2%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.food-detail-picture-delete-btn {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 120px;
+    display: block !important;
+}
+
+.food-detail-picture-save-btn {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 120px;
+}
+
+#food-detail-save-picture-btn {
+    width: 85px;
+    left: 50%;
+    position: relative;
+    transform: translate(-50%, 0);
+}
+
+.food-detail-description-form {
+    border-bottom: 1px solid white;
+    padding-bottom: 5%;
+}
+
+.line {
+    border-bottom: 1px solid white;
+}
+
+#file {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+#food-detail-file-save {
+    margin-top: 5%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 120px;
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 8px;
+    height: 40px;
+    display: block;
+}

@@ -13,7 +13,7 @@
 <div class="backround-login"></div>
 <div class="container-login">
     <h1>Reštaurácia Barbaricum</h1>
-    <div class="text-center text-danger mb-3">
+    <div class="text-center text-danger mb-3" id="validation-error-text">
         <?= @$data['message'] ?>
     </div>
     <form class="form-signin" method="post" action="<?= \App\Config\Configuration::LOGIN_URL ?>">
@@ -21,11 +21,11 @@
             <label for="login">login</label><br>
             <input name="login" type="text" id="login" placeholder="Enter your login">
         </div>
-        <div class="form-item">
+        <div class="form-item" id="password-form-item">
             <label for="password">password</label><br>
             <input name="password" type="password" id="password" placeholder="Enter your password">
         </div>
-        <div class="option">
+        <div class="option" id="options-button">
             <button type="submit" name="submit" id="login-button">login</button>
             <button onclick="location.href='?c=home'" type="button" id="password-button">register</button>
         </div>

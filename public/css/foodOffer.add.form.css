@@ -1,28 +1,95 @@
-.add-food-offer-form {
-    width: 35%;
-    margin: 100px auto;
+.form-add-food {
+    width: 350px;
+    margin: 50px auto;
 }
 
-.input-jedlo .logout-text {
+.input-prop {
     margin-bottom: 3%;
-    width: 70%;
+    width: 100%;
     background-color: transparent;
     border-color: white;
     border-radius: 20px;
     color: white;
 }
 
-.label-food .label-price {
-    width: 100%;
-    margin-left: 15%;
-    margin-top: 10%;
-    margin-bottom: 15%;
+.form-add-food label {
     color: white;
+    margin-bottom: 15px;
+}
+
+.label-add-food-name {
+    width: 350px;
+}
+
+.label-add-food-price {
+    width: 160px;
+}
+
+.input-price {
+    width: 95px;
+}
+
+.label-add-food-weight {
+    width: 160px;
+    margin: 0 0 10px 25px;
+}
+
+.input-weight {
+    width: 95px;
+}
+
+#weight-unit {
+    width: 60px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 30px;
+}
+
+.form-add-food option {
+    color: black;
+}
+
+#price-unit {
+    width: 60px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 30px;
 }
 
 #submit-button {
     background-color: blue;
-    margin-bottom: 15%;
+    position: relative;
     width: 50%;
-    margin-left: 25%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.errors {
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.label-add-food-ingredients {
+    width: 350px;
+}
+
+#textarea-add-food-ingredients {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 15px;
+    width: 100%;
+
+}
+
+@media screen and (max-width: 380px) {
+    .form-add-food {
+        width: 90%;
+    }
 }

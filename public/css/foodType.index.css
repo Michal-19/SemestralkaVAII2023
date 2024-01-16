@@ -1,0 +1,77 @@
+#food-type-title {
+    text-align: center;
+    color: white;
+    margin-top: 5%;
+    font-size: 50px;
+}
+
+.food-type {
+    position: relative;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, 0%);
+    margin: 10px 0;
+    background-color: transparent;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.add-food-type-input {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 250px;
+    margin: 10px 0;
+    background-color: transparent;
+    border: 2px white solid;
+    border-radius: 30px;
+    color: white;
+}
+
+.add-food-type-input::placeholder {
+    color: white;
+}
+
+.food-type-add-button {
+    width: 150px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.food-type-add-button a {
+    position: relative;
+    width: 100%;
+}
+
+.food-type-text {
+    color: white;
+    overflow-wrap: break-word;
+    cursor: pointer;
+    width: 150px;
+}
+
+.food-type-text:hover {
+    color: white;
+}
+
+.food-type-input-edit {
+    background-color: transparent;
+    color: white;
+    border: 2px white solid;
+    border-radius: 30px;
+    width: 80%;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 320px) {
+    #food-type-title {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 275px) {
+    .add-food-type-input {
+        width: 100%;
+    }
+}
