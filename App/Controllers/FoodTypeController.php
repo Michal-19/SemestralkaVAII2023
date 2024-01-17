@@ -31,8 +31,17 @@ class FoodTypeController extends AControllerBase
             if (!empty(trim($foodTypeToCreate->foodTypeName))) {
                 $foodType = new FoodType();
                 $foodType->setName($foodTypeToCreate->foodTypeName);
-                $foodType->save();
-                return $this->json($foodType);
+                $loggerUserName = $this->app->getAuth()->getLoggedUserName();
+                if (isset($loggerUserName)) {
+                    $foodType->setCreatedBy($loggerUserName);
+                    $foodType->setCreatedTime(date("Y-m-d H:i:s"));
+                    $foodType->setLastEditedBy($loggerUserName);
+                    $foodType->setLastEditedTime(date("Y-m-d H:i:s"));
+                    $foodType->save();
+                    return $this->json($foodType);
+                } else {
+                    throw new HTTPException(403, "Unauthorized");
+                }
             } else {
                 throw new HTTPException(412, "foodTypeName is empty");
             }
@@ -57,9 +66,7 @@ class FoodTypeController extends AControllerBase
                     $foodTypeToEdit->save();
                     return $this->json($foodTypeToEdit);
                 } else {
-                    throw new HTTPException(
-                        404,
-                        "Typ jedla s id " . $newFoodTypeProperties->id . " neexistuje");
+                    throw new HTTPException(404,"Typ jedla s id " . $newFoodTypeProperties->id . " neexistuje");
                 }
             }
         } else {

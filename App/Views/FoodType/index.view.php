@@ -14,11 +14,15 @@ use App\Core\IAuthenticator;
     <?php foreach ($data as $foodType) {
         if ($auth->isLogged()) { ?>
             <div class="food-type" id="food-type-id-<?= $foodType->getId() ?>">
-                <label for="food-type-input-edit-id-<?= $foodType->getId() ?>"
+                <label for="food-type-input-edit-id-<?= $foodType->getId() ?>"></label>
                 <input class="food-type-input-edit"
                        id="food-type-input-edit-id-<?= $foodType->getId() ?>"
                        value="<?= $foodType->getName() ?>">
                 <br>
+                <div class="food-type-created-by">Vytvorené používateľom: <?= $foodType->getCreatedBy() ?></div>
+                <div class="food-type-created-time">Vytvorené: <?= $foodType->getCreatedTime() ?></div>
+                <div class="food-type-edited-by">Naposledy upravené používteľom: <?= $foodType->getLastEditedBy() ?></div>
+                <div aria-disabled="true" class="food-type-edited-time">Naposledy vytvorené: <?= $foodType->getLastEditedTime() ?></div>
                 <a class="btn btn-primary" href="?c=foodOffer&foodTypeId=<?= $foodType->getId() ?>">Ukáž jedla</a>
                 <a class="btn btn-warning"
                    id="food-type-btn-edit-id-<?= $foodType->getId() ?>"

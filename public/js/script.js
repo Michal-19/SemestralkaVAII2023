@@ -18,5 +18,9 @@ function validateFoodForm() {
 
 function navbarMenu () {
     let navbar = document.querySelector(".nav-bar");
+    let logo = document.querySelector(".logo");
+    let icone = document.querySelector(".icone");
     navbar.classList.toggle("active");
+    logo.classList.toggle("active");
+    icone.classList.toggle("active");
 }

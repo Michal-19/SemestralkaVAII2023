@@ -59,5 +59,6 @@ use App\Config\Configuration;
         <?= $contentHTML ?>
     </div>
 </div>
+<footer class="footer"></footer>
 </body>
 </html>

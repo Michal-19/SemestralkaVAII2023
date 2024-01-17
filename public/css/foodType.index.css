@@ -14,6 +14,8 @@
     background-color: transparent;
     border-radius: 30px;
     text-align: center;
+    border: 1px solid white;
+    padding: 10px 0;
 }
 
 .add-food-type-input {
@@ -64,6 +66,15 @@
     margin-bottom: 5px;
 }
 
+.food-type-created-by,
+.food-type-created-time,
+.food-type-edited-by,
+.food-type-edited-time {
+    color: #AAA;
+    cursor: default;
+    font-size: small;
+}
+
 @media screen and (max-width: 320px) {
     #food-type-title {
         font-size: 30px;
@@ -71,7 +82,18 @@
 }
 
 @media screen and (max-width: 275px) {
-    .add-food-type-input {
+    .add-food-type-input, .food-type {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .food-type {
+        width: 250px;
+        padding: 10px 10px;
+    }
+
+    .food-type-input-edit {
         width: 100%;
     }
 }

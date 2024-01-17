@@ -19,10 +19,7 @@ class FoodOfferController extends AControllerBase
         $foodTypeId = (int)$this->request()->getValue("foodTypeId");
         $foodType = FoodType::getOne($foodTypeId);
         if ($foodType == null) {
-            return $this->html([
-                "foods" => [],
-                "foodType" => null
-            ]);
+            throw new HTTPException(404);
         }
         $foods = Food::getAll("foodTypeId_fk = ?", [$foodType->getId()]);
         return $this->html([
@@ -32,11 +29,16 @@ class FoodOfferController extends AControllerBase
     }
 
     public function add(): Response {
-        $foodType = FoodType::getOne((int)$this->request()->getValue("foodTypeId"));
-        return $this->html([
-            "food" => new Food(),
-            "action" => "Pridať",
-            "foodType" => $foodType], viewName: "add.form");
+        $foodTypeId = $this->request()->getValue("foodTypeId");
+        if (isset($foodType)) {
+            $foodType = FoodType::getOne($foodTypeId);
+            return $this->html([
+                "food" => new Food(),
+                "action" => "Pridať",
+                "foodType" => $foodType], viewName: "add.form");
+        } else {
+            throw new HTTPException(404);
+        }
     }
 
     public function store(): Response {
@@ -113,7 +115,7 @@ class FoodOfferController extends AControllerBase
 
         $foodTypeId = (int)$this->request()->getValue("foodTypeId");
         $foodType = FoodType::getOne($foodTypeId);
-        if ($foodType == null) {
+        if (!isset($foodType)) {
             $data["errors"]["foodType"] = "Zlý request";
         }
 
@@ -129,111 +131,99 @@ class FoodOfferController extends AControllerBase
     }
 
     public function edit(): Response {
-        $id = $this->request()->getValue("id");
+        $id = (int)$this->request()->getValue("id");
         $foodToEdit = Food::getOne($id);
-        $foodType = null;
         if (isset($foodToEdit)) {
             $foodType = FoodType::getOne($foodToEdit->getFoodTypeIdFk());
+            return $this->html(["food" => $foodToEdit,
+                "foodType" => $foodType,
+                "action" => "Upraviť"], viewName: "add.form");
         }
-        return $this->html(["food" => $foodToEdit,
-                            "foodType" => $foodType,
-                            "action" => "Upraviť"], viewName: "add.form");
+        throw new HTTPException(404);
+
     }
 
     public function delete(): Response {
-        $id = $this->request()->getValue("id");
+        $id = (int)$this->request()->getValue("id");
         $foodToDelete = Food::getOne($id);
         if (isset($foodToDelete)) {
             $foodTypeId = $foodToDelete->getFoodTypeIdFk();
             $foodToDelete->delete();
+            return $this->redirect("?c=foodOffer&foodTypeId=$foodTypeId");
         }
-        return $this->redirect("?c=foodOffer&foodTypeId=$foodTypeId");
+        throw new HTTPException(404);
     }
 
     public function getOneFood(): Response {
-        $foodId = $this->request()->getValue("foodId");
-        if (isset($foodId) && is_numeric($foodId)) {
-            $food = Food::getOne($foodId);
-            if (isset($food)) {
-                $foodType = FoodType::getOne($food->getFoodTypeIdFk());
-                return $this->html([
-                    "food" => $food,
-                    "foodType" => $foodType],
-                    "detail");
-            } else {
-                return $this->redirect("?c=foodOffer&foodTypeId=$foodId");
-            }
-        } else {
+        $foodId = (int)$this->request()->getValue("foodId");
+        $food = Food::getOne($foodId);
+        if (isset($food)) {
+            $foodType = FoodType::getOne($food->getFoodTypeIdFk());
             return $this->html([
-                "food" => null,
-                "foodType" => null]);
+                "food" => $food,
+                "foodType" => $foodType],
+                "detail");
+        } else {
+            throw new HTTPException(404);
         }
     }
 
     public function editDescription(): Response {
         $data = [];
-        $foodToEditId = $this->request()->getValue("foodId");
-        if (!isset($foodToEditId) || $foodToEditId == "") {
-            $data["editDescriptionErrors"]["foodId"] = "Zlý request";
+        $foodToEditId = (int)$this->request()->getValue("foodId");
+        $foodToEdit = Food::getOne($foodToEditId);
+        if (isset($foodToEdit)) {
+            $description = $this->request()->getValue("description");
+            $foodToEdit->setDescription($description);
+            $foodToEdit->save();
+            $data["food"] = $foodToEdit;
+            $data["foodType"] = FoodType::getOne($foodToEdit->getFoodTypeIdFk());
+            return $this->html($data, "detail");
         } else {
-            $foodToEdit = Food::getOne($foodToEditId);
-            if (!isset($foodToEdit)) {
-                $data["editDescriptionErrors"]["food"] = "Jedlo s id" . $foodToEditId . " neexistuje";
-            } else {
-                $description = $this->request()->getValue("description");
-                $foodToEdit->setDescription($description);
-                $foodToEdit->save();
-                $data["food"] = $foodToEdit;
-                $data["foodType"] = FoodType::getOne($foodToEdit->getFoodTypeIdFk());
-            }
+            throw new HTTPException(404);
         }
-        return $this->html($data, "detail");
     }
 
     public function saveFile() {
         $foodId = (int)$this->request()->getValue("foodId");
         $food = Food::getOne($foodId);
+        if (!isset($food)) {
+            throw new HTTPException(404);
+        }
         $foodTypeId = $food?->getFoodTypeIdFk();
         $foodType = FoodType::getOne($foodTypeId);
-        if (isset($food)) {
-            $file = $this->request()->getFiles()["file"];
-            if (isset($file)) {
-                if (empty(trim($file["name"]))) {
+        $file = $this->request()->getFiles()["file"];
+        if (isset($file)) {
+            if (empty(trim($file["name"]))) {
+                return $this->html([
+                    "food" => $food,
+                    "foodType" => $foodType,
+                    "error" => "Nebol vybratý súbor"
+                ], "detail");
+            } else {
+                $time = hrtime(true);
+                $fileName = $time . "-" . $file["name"];
+                $fullFilePath = "public/images/" . $fileName;
+                if (move_uploaded_file($file["tmp_name"], $fullFilePath)) {
+                    if (!empty(trim($food->getPicture()))) {
+                        unlink($food->getPicture());
+                    }
+                    $food->setPicture($fullFilePath);
+                    $food->save();
+                    return $this->html([
+                        "food" => $food,
+                        "foodType" => $foodType
+                    ], "detail");
+                } else {
                     return $this->html([
                         "food" => $food,
                         "foodType" => $foodType,
-                        "error" => "Nebol vybratý súbor"
+                        "error" => "Súbor sa nepodarilo nahrať"
                     ], "detail");
-                } else {
-                    $time = hrtime(true);
-                    $fileName = $time . "-" . $file["name"];
-                    $fullFilePath = "public/images/" . $fileName;
-                    if (move_uploaded_file($file["tmp_name"], $fullFilePath)) {
-                        if (!empty(trim($food->getPicture()))) {
-                            unlink($food->getPicture());
-                        }
-                        $food->setPicture($fullFilePath);
-                        $food->save();
-                        return $this->html([
-                            "food" => $food,
-                            "foodType" => $foodType
-                        ], "detail");
-                    } else {
-                        return $this->html([
-                            "food" => $food,
-                            "foodType" => $foodType,
-                            "error" => "Súbor sa nepodarilo nahrať"
-                        ], "detail");
-                    }
                 }
-            } else {
-                return $this->html([
-                    "food" => $food,
-                    "foodType" => $foodType
-                ], "detail");
             }
         } else {
-            throw new HTTPException(404);
+            throw new HTTPException(400);
         }
     }
 

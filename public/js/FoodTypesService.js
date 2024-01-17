@@ -20,6 +20,10 @@ class FoodTypesService {
                                                id="food-type-input-edit-id-${createdFoodType.id}" 
                                                value="${createdFoodType.name}">
                                         <br>
+                                        <div class="food-type-created-by">Vytvorené používateľom: ${createdFoodType.createdBy}</div>
+                                        <div class="food-type-created-time">Vytvorené: ${createdFoodType.createdTime}</div>
+                                        <div class="food-type-edited-by">Naposledy upravené používteľom: ${createdFoodType.lastEditedBy}</div>
+                                        <div class="food-type-edited-time">Naposledy vytvorené: ${createdFoodType.lastEditedTime}</div>
                                         <a class="btn btn-primary" href="?c=foodOffer&id=${createdFoodType.id}">Ukáž jedla</a>   
                                         <a class="btn btn-warning" 
                                            id="food-type-btn-edit-id-${createdFoodType.id}" 
