@@ -54,6 +54,8 @@ use App\Core\IAuthenticator;
                 <span class="errors"><?= $data["error"] ?></span><br>
             <?php } ?>
         </form>
+    <?php } else { ?>
+        <img class="food-detail-picture-img" src="<?= $data["food"]?->getPicture() ?>" alt="">
     <?php } ?>
     <?php if ($data["food"]?->getWeight() !== null) { ?>
         <div class="food-detail-weight">
