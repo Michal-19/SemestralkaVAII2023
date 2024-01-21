@@ -12,6 +12,27 @@ class FoodOfferController extends AControllerBase
 {
 
     /**
+     * Authorize controller actions
+     * @param $action
+     * @return bool
+     */
+    public function authorize($action)
+    {
+        switch ($action) {
+            case "add":
+            case "store":
+            case "edit":
+            case "delete":
+            case "editDescription":
+            case "saveFile":
+            case "deleteFile":
+                return $this->app->getAuth()->isLogged();
+            default:
+                return true;
+        }
+    }
+
+    /**
      * @inheritDoc
      */
     public function index(): Response
@@ -29,9 +50,9 @@ class FoodOfferController extends AControllerBase
     }
 
     public function add(): Response {
-        $foodTypeId = $this->request()->getValue("foodTypeId");
+        $foodTypeId = (int)$this->request()->getValue("foodTypeId");
+        $foodType = FoodType::getOne($foodTypeId);
         if (isset($foodType)) {
-            $foodType = FoodType::getOne($foodTypeId);
             return $this->html([
                 "food" => new Food(),
                 "action" => "Pridať",
@@ -135,7 +156,8 @@ class FoodOfferController extends AControllerBase
         $foodToEdit = Food::getOne($id);
         if (isset($foodToEdit)) {
             $foodType = FoodType::getOne($foodToEdit->getFoodTypeIdFk());
-            return $this->html(["food" => $foodToEdit,
+            return $this->html([
+                "food" => $foodToEdit,
                 "foodType" => $foodType,
                 "action" => "Upraviť"], viewName: "add.form");
         }
@@ -205,7 +227,8 @@ class FoodOfferController extends AControllerBase
                 $fileName = $time . "-" . $file["name"];
                 $fullFilePath = "public/images/" . $fileName;
                 if (move_uploaded_file($file["tmp_name"], $fullFilePath)) {
-                    if (!empty(trim($food->getPicture()))) {
+                    $picture = $food->getPicture();
+                    if (isset($picture) && file_exists($picture)) {
                         unlink($food->getPicture());
                     }
                     $food->setPicture($fullFilePath);

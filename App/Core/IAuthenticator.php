@@ -11,11 +11,12 @@ interface IAuthenticator
 {
     /**
      * Perform user login
-     * @param $login
-     * @param $password
+     * @param $userInputPassword
+     * @param $passwordInDB
+     * @param $userInputUserName
      * @return bool
      */
-    public function login($login, $password): bool;
+    public function login($userInputPassword, $passwordInDB, $userInputUserName): bool;
 
     /**
      * Perform user login

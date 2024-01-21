@@ -1,50 +1,69 @@
-.container-uvod h1 {
-    font-size: 5vw;
+.main-title {
     color: white;
     text-align: center;
-    margin: 30px auto;
+    margin-bottom: 25px;
+    font-size: 40px;
 }
 
-@media screen and (max-width: 575px) {
-    .container-uvod h1 {
-        font-size: 6.5vw;
-    }
-}
-
-.container-uvod h3 {
+.menu-container {
+    width: 60%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
     text-align: center;
     color: white;
-    font-size: 2vw;
 }
 
-@media screen and (max-width: 575px) {
-    .container-uvod h3 {
-        font-size: 3vw;
-    }
-}
-
-.float-container {
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 5%;
-}
-
-.float-child {
-    width: 46%;
-    float: left;
-    padding: 20px;
-    color: white;
-    text-align: center;
-    border: 2px solid;
+.menu {
+    margin-bottom: 10%;
+    border: 2px solid white;
     border-radius: 20px;
-    margin-right: 2%;
-    margin-left: 2%;
-    margin-bottom: 2%;
+    padding: 5%;
 }
 
-@media screen and (max-width: 575px) {
-    .float-child {
-        width: 90%;
-        text-align: center;
+.menu-title {
+    border-bottom: 1px solid white;
+}
+
+.menu-soap-label, .menu-main-food-label {
+    border-bottom: 1px solid white;
+}
+
+.menu-soap, .menu-main-food {
+    margin-bottom: 10px;
+}
+
+#menu-edit-btn, #menu-delete-btn {
+    margin-top: 10px;
+}
+
+.menu-add-btn, .menu-day-label {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.menu-day-label {
+    color: white;
+    text-align: center;
+}
+
+.menu-day-select {
+    margin-bottom: 10px;
+    width: 100px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 2px 2px;
+}
+
+.menu-day-select option {
+    color: black;
+}
+
+@media screen and (max-width: 500px) {
+    .menu-container {
+        width: 100%;
     }
 }

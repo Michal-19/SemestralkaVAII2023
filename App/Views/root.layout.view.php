@@ -17,13 +17,17 @@ use App\Config\Configuration;
     <link rel="stylesheet" href="/public/css/foodOffer.index.css">
     <link rel="stylesheet" href="/public/css/foodOffer.add.form.css">
     <link rel="stylesheet" href="/public/css/foodOffer.detail.css">
+    <link rel="stylesheet" href="/public/css/home.addMenu.form.css">
+    <link rel="stylesheet" href="/public/css/register.form.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/public/js/script.js"></script>
-    <script src="/public/js/FoodTypesCreator.js" type="module" defer></script>
+    <script src="/public/js/ServiceCreator.js" type="module" defer></script>
     <script src="/public/js/FoodTypesApi.js" type="module" defer></script>
     <script src="/public/js/FoodTypesService.js" type="module" defer></script>
     <script src="/public/js/RequestSender.js" type="module" defer></script>
+    <script src="/public/js/MenuApi.js" type="module" defer></script>
+    <script src="/public/js/MenuService.js" type="module" defer></script>
 </head>
 <body>
 <header>
@@ -59,6 +63,5 @@ use App\Config\Configuration;
         <?= $contentHTML ?>
     </div>
 </div>
-<footer class="footer"></footer>
 </body>
 </html>

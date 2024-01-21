@@ -8,7 +8,7 @@
 .food-type {
     position: relative;
     left: 50%;
-    width: 80%;
+    width: 400px;
     transform: translate(-50%, 0%);
     margin: 10px 0;
     background-color: transparent;
@@ -62,8 +62,9 @@
     color: white;
     border: 2px white solid;
     border-radius: 30px;
-    width: 80%;
+    width: 95%;
     margin-bottom: 5px;
+    padding: 0 5px;
 }
 
 .food-type-created-by,
@@ -75,6 +76,9 @@
     font-size: small;
 }
 
+.food-type-food-type-label {
+    color: white;
+}
 @media screen and (max-width: 320px) {
     #food-type-title {
         font-size: 30px;

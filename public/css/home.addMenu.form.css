@@ -1,0 +1,84 @@
+.add-menu-form {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 350px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 10px 10px;
+}
+
+.add-menu-title {
+    text-align: center;
+}
+
+.add-menu-name-label,
+.add-menu-soup-label,
+.add-menu-main-food-label,
+.add-menu-day-label,
+.add-menu-price-label,
+.add-menu-main-food-label {
+    position: relative;
+    width: 75%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin: 5px 0;
+}
+
+.add-menu-name-input,
+.add-menu-soup-input,
+.add-menu-main-food-input {
+    width: 100%;
+}
+
+.add-menu-price-input {
+    width: 70%;
+}
+
+.add-menu-day-select,
+.add-menu-price-unit-select {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 3px;
+}
+
+.add-menu-day-select {
+    width: 100px;
+}
+
+.add-menu-price-unit-select {
+    width: 65px;
+}
+
+.input-prop {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 0 5px;
+}
+
+.add-menu-day-select option,
+.add-menu-price-unit-select option {
+    color: black;
+    text-align: center;
+}
+
+#add-menu-add-button {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 50%;
+    margin-top: 5%;
+}
+
+@media screen and (max-width: 400px) {
+    .add-menu-form,
+    .add-menu-price-input {
+        width: 100%;
+    }
+}

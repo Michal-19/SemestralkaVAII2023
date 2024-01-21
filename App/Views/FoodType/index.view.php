@@ -14,15 +14,21 @@ use App\Core\IAuthenticator;
     <?php foreach ($data as $foodType) {
         if ($auth->isLogged()) { ?>
             <div class="food-type" id="food-type-id-<?= $foodType->getId() ?>">
-                <label for="food-type-input-edit-id-<?= $foodType->getId() ?>"></label>
+                <label class="food-type-food-type-label" for="food-type-input-edit-id-<?= $foodType->getId() ?>">Zadaj typ jedla</label>
                 <input class="food-type-input-edit"
                        id="food-type-input-edit-id-<?= $foodType->getId() ?>"
                        value="<?= $foodType->getName() ?>">
                 <br>
                 <div class="food-type-created-by">Vytvorené používateľom: <?= $foodType->getCreatedBy() ?></div>
                 <div class="food-type-created-time">Vytvorené: <?= $foodType->getCreatedTime() ?></div>
-                <div class="food-type-edited-by">Naposledy upravené používteľom: <?= $foodType->getLastEditedBy() ?></div>
-                <div aria-disabled="true" class="food-type-edited-time">Naposledy vytvorené: <?= $foodType->getLastEditedTime() ?></div>
+                <div class="food-type-edited-by"
+                     id="food-type-edited-by-id-<?= $foodType->getId() ?>">
+                    Naposledy upravené používateľom: <?= $foodType->getLastEditedBy() ?>
+                </div>
+                <div class="food-type-edited-time"
+                     id="food-type-edited-time-id-<?= $foodType->getId() ?>">
+                    Naposledy upravené: <?= $foodType->getLastEditedTime() ?>
+                </div>
                 <a class="btn btn-primary" href="?c=foodOffer&foodTypeId=<?= $foodType->getId() ?>">Ukáž jedla</a>
                 <a class="btn btn-warning"
                    id="food-type-btn-edit-id-<?= $foodType->getId() ?>"
@@ -43,7 +49,7 @@ use App\Core\IAuthenticator;
     <?php } ?>
 </div>
 <?php if ($auth->isLogged()) { ?>
-        <label for="food-type-input-add-id"></label>
+    <label for="food-type-input-add-id"></label>
     <input id="food-type-input-add-id" class="add-food-type-input" placeholder="Zadajte druh jedla">
     <div class="food-type-add-button">
         <a class="btn btn-success" id="food-type-btn-add-id" onclick="document.foodTypesService.addFoodType()">Pridať</a>

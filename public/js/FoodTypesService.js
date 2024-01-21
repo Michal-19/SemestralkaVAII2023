@@ -24,7 +24,7 @@ class FoodTypesService {
                                         <div class="food-type-created-time">Vytvorené: ${createdFoodType.createdTime}</div>
                                         <div class="food-type-edited-by">Naposledy upravené používteľom: ${createdFoodType.lastEditedBy}</div>
                                         <div class="food-type-edited-time">Naposledy vytvorené: ${createdFoodType.lastEditedTime}</div>
-                                        <a class="btn btn-primary" href="?c=foodOffer&id=${createdFoodType.id}">Ukáž jedla</a>   
+                                        <a class="btn btn-primary" href="?c=foodOffer&foodTypeId=${createdFoodType.id}">Ukáž jedla</a>   
                                         <a class="btn btn-warning" 
                                            id="food-type-btn-edit-id-${createdFoodType.id}" 
                                            onClick="document.foodTypesService.editFoodType(${createdFoodType.id})">Edit
@@ -46,6 +46,10 @@ class FoodTypesService {
         if (foodTypeInputElement !== undefined) {
             let editedFoodType = await this.#foodTypeApi.editFoodType(id, foodTypeInputElement.value);
             if (editedFoodType.code === undefined) {
+                let lastEditedFoodTypeTyUserElement = document.getElementById(`food-type-edited-by-id-${id}`);
+                lastEditedFoodTypeTyUserElement.innerText = "Naposledy upravené používateľom: " + editedFoodType.lastEditedBy;
+                let lastEditedFoodTypeTimeElement = document.getElementById(`food-type-edited-time-id-${id}`);
+                lastEditedFoodTypeTimeElement.innerText = "Naposledy upravené: " + editedFoodType.lastEditedTime;
                 alert("Typ jedla bol úspešne zmenený");
             } else {
                 alert(editedFoodType.status);

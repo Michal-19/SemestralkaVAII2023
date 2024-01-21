@@ -1,0 +1,23 @@
+.register-title {
+    text-align: center;
+    color: white;
+}
+
+.register-form {
+    position: relative;
+    width: 350px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 2px solid white;
+    border-radius: 20px;
+    padding: 10px 0;
+}
+
+.register-form-login-label,
+.register-form-password-label,
+.register-form-password-again-label {
+    color: white;
+    width: 90%;
+    position: relative;
+    left: 5%;
+}

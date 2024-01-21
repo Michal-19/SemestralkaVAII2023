@@ -5,10 +5,28 @@ namespace App\Controllers;
 use App\Core\AControllerBase;
 use App\Core\HTTPException;
 use App\Core\Responses\Response;
+use App\Models\Food;
 use App\Models\FoodType;
 
 class FoodTypeController extends AControllerBase
 {
+
+    /**
+     * Authorize controller actions
+     * @param $action
+     * @return bool
+     */
+    public function authorize($action)
+    {
+        switch ($action) {
+            case "createFoodType":
+            case "editFoodType":
+            case "deleteFoodType":
+                return $this->app->getAuth()->isLogged();
+            default:
+                return true;
+        }
+    }
 
     public function index(): Response
     {
@@ -63,6 +81,8 @@ class FoodTypeController extends AControllerBase
                 $foodTypeToEdit = FoodType::getOne($newFoodTypeProperties->id);
                 if ($foodTypeToEdit != null) {
                     $foodTypeToEdit->setName($newFoodTypeProperties->foodTypeName);
+                    $foodTypeToEdit->setLastEditedBy($this->app->getAuth()->getLoggedUserName());
+                    $foodTypeToEdit->setLastEditedTime(date("Y-m-d H:i:s"));
                     $foodTypeToEdit->save();
                     return $this->json($foodTypeToEdit);
                 } else {
@@ -83,13 +103,18 @@ class FoodTypeController extends AControllerBase
                 throw new HTTPException(
                     404,
                     "Typ jedla s id " . $idFoodTypeToDelete->id . " nexistuje");
-            } else {
-                $foodTypeToDelete->delete();
-                $foodTypeToDelete->save();
-                return $this->json($foodTypeToDelete);
             }
+            $foodCountWithFoodTypeToDelete = count(Food::getAll("foodTypeId_fk = ?", [$foodTypeToDelete->getId()]));
+            if ($foodCountWithFoodTypeToDelete > 0) {
+                throw new HTTPException(
+                    400,
+                    "Tento typ jedla obsahuje svoje jedla. Pre odstránenie odstráňte najprv jedlá tohoto typu");
+            }
+            $foodTypeToDelete->delete();
+            $foodTypeToDelete->save();
+            return $this->json($foodTypeToDelete);
         } else {
-            throw new HTTPException(400, "Zlá štruktúra požiadaky");
+            throw new HTTPException(400, 'Zlá štruktúra požiadavky');
         }
     }
 }

@@ -1,5 +1,5 @@
 .food-detail-container {
-    width: 65%;
+    width: 400px;
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
@@ -149,6 +149,7 @@
     position: relative;
     left: 50%;
     transform: translate(-50%, 0);
+    width: 100%;
 }
 
 #food-detail-file-save {
@@ -163,3 +164,18 @@
     height: 40px;
     display: block;
 }
+
+@media screen and (max-width: 435px) {
+    .food-detail-container {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 315px) {
+    .food-detail-weight, .food-detail-price {
+        width: 100% !important;
+        text-align: center;
+        margin: 10px 0;
+    }
+}
+.food-detail-container

@@ -48,6 +48,7 @@
 
 .form-add-food option {
     color: black;
+    text-align: center;
 }
 
 #price-unit {
