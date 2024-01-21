@@ -223,6 +223,13 @@ class FoodOfferController extends AControllerBase
                     "error" => "Nebol vybratý súbor"
                 ], "detail");
             } else {
+                if (!in_array($file['type'], ['image/jpg', 'image/jpeg', 'image/png'])) {
+                    return $this->html([
+                        "food" => $food,
+                        "foodType" => $foodType,
+                        "error" => "Súbor musí byť typu jpg/jpeg/png"
+                    ], "detail");
+                }
                 $time = hrtime(true);
                 $fileName = $time . "-" . $file["name"];
                 $fullFilePath = "public/images/" . $fileName;
